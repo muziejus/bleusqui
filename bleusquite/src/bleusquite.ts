@@ -6,7 +6,6 @@ export interface BleusquiteConfiguration {
 }
 
 export default class Bleusquite {
-
   declare agent: BskyAgent;
 
   declare postRecord: PostRecord;
@@ -15,7 +14,7 @@ export default class Bleusquite {
     console.log(text);
   }
 
-  addPhoto(location: string, alt: string){
+  addPhoto(location: string, alt: string) {
     console.log(location, alt);
 
     return this;

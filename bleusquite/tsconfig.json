@@ -1,5 +1,6 @@
 {
   "include": ["src/**/*"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
@@ -8,12 +9,11 @@
     "declaration": true,
     "declarationDir": "./dist",
     "declarationMap": true,
-    "emitDeclarationOnly": true,
+    "emitDeclarationOnly": false,
     "experimentalDecorators": true,
     "inlineSources": true,
     "inlineSourceMap": true,
     "module": "nodenext",
-    "noEmit": true,
     "noEmitOnError": false,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
