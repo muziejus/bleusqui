@@ -1,0 +1,41 @@
+{
+  "name": "bleusquite",
+  "version": "0.0.1",
+  "description": "A Node library (further) simplifying the process of posting to Bluesky automatically.",
+  "author": "Moacir P. de Sá Pereira <github@moacir.moacir.com> (http://moacir.com)",
+  "license": "MIT",
+  "private": true,
+  "repository": "git@github.com:muziejus/bleusquite.git",
+  "scripts": {
+    "dev": "concurrently 'npm:dev:*' --prefix-colors cyan,white,yellow --restart-tries -1",
+    "build": "pnpm run --filter bleusquite build",
+    "lint": "pnpm run --filter '*' lint",
+    "lint:fix": "pnpm run --filter '*' lint:fix"
+  },
+  "keywords": [
+    "Node",
+    "Bluesky",
+    "E-literature",
+    "elit"
+  ],
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "eslint": "^8.47.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-formatter-pretty": "^5.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.1",
+    "typescript": "^5.1.6"
+  },
+  "engines": {
+    "node": ">= 18.*",
+    "yarn": "use pnpm",
+    "npm": "use pnpm"
+  },
+  "volta": {
+    "node": "18.17.1",
+    "pnpm": "8.6.12"
+  },
+  "packageManager": "pnpm@8.6.12"
+}
