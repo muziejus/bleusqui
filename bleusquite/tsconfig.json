@@ -11,8 +11,6 @@
     "declarationMap": true,
     "emitDeclarationOnly": false,
     "experimentalDecorators": true,
-    "inlineSources": true,
-    "inlineSourceMap": true,
     "module": "nodenext",
     "noEmitOnError": false,
     "noFallthroughCasesInSwitch": true,
@@ -21,6 +19,8 @@
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "outDir": "dist",
+    "sourceMap": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "target": "esnext"

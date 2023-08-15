@@ -5,6 +5,7 @@
   "author": "Moacir P. de Sá Pereira <github@moacir.moacir.com> (http://moacir.com)",
   "license": "MIT",
   "private": true,
+  "type": "module",
   "repository": "git@github.com:muziejus/bleusquite.git",
   "scripts": {
     "dev": "concurrently 'npm:dev:*' --prefix-colors cyan,white,yellow --restart-tries -1",
