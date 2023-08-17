@@ -10,7 +10,6 @@
   "scripts": {
     "dev": "rollup -c ./rollup.config.mjs --watch --watch.onEnd='mocha'",
     "build": "rollup -c ./rollup.config.mjs",
-    "devOld": "concurrently \"npm:dev:*\" \"npm:test:*\" --prefix-colors cyan,white,yellow --restart-tries -1",
     "lint:types": "tsc --noEmit",
     "lint:fix": "concurrently 'npm:lint:*:fix' --names 'fix:'",
     "lint:js": "eslint --color --format=pretty . --cache",
@@ -32,6 +31,8 @@
     "file-type": "^18.5.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
     "@rollup/plugin-commonjs": "^25.0.4",
     "@rollup/plugin-node-resolve": "^15.2.0",
     "@rollup/plugin-typescript": "^11.1.2",
@@ -53,7 +54,21 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   },
-  "engines": {
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "subject-case": [
+        2,
+        "always",
+        "sentence-case"
+      ],
+      "subject-full-stop": [
+        0
+      ]
+    }
+  },  "engines": {
     "node": ">= 18.*",
     "yarn": "use pnpm",
     "npm": "use pnpm"
