@@ -4,7 +4,7 @@
   "description": "A Node library (further) simplifying the process of posting to Bluesky automatically.",
   "type": "module",
   "scripts": {
-    "start": "rollup -c ./rollup.config.mjs --watch",
+    "dev": "rollup -c ./rollup.config.mjs --watch",
     "build": "rollup -c ./rollup.config.mjs",
     "lint": "concurrently 'npm:lint:*(!fix)' --names 'lint:'",
     "lint:types": "tsc --noEmit",
@@ -25,7 +25,8 @@
     "extends": "../package.json"
   },
   "dependencies": {
-    "@atproto/api": "^0.6.3"
+    "@atproto/api": "^0.6.3",
+    "file-type": "^18.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.22.10",
@@ -35,6 +36,7 @@
     "@rollup/plugin-commonjs": "^25.0.4",
     "@rollup/plugin-node-resolve": "^15.2.0",
     "@rollup/plugin-typescript": "^11.1.2",
+    "@types/node": "^20.5.0",
     "@typescript-eslint/eslint-plugin": "^6.3.0",
     "@typescript-eslint/parser": "^6.3.0",
     "rollup": "^3.28.0"
