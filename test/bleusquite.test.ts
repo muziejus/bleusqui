@@ -1,4 +1,4 @@
-import { Bleusquite } from "../../bleusquite/dist/index.js";
+import { Bleusquite } from "../dist/index.js";
 import { expect } from "chai";
 
 describe("Testing Bleusquite class", function () {
