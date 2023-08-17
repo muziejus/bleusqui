@@ -1,4 +1,6 @@
 import { BskyAgent, type PostRecord } from "@atproto/api";
+import { fileTypeFromBuffer } from "file-type";
+import fs from "fs";
 
 export interface BleusquiteConfiguration {
   identifier: string;
@@ -13,6 +15,8 @@ export class Bleusquite {
   declare agent: BskyAgent;
 
   declare postRecord: PostRecord;
+
+  photosNumber = 0;
 
   constructor(config: BleusquiteConfiguration) {
     this.identifier = config.identifier;
@@ -34,8 +38,25 @@ export class Bleusquite {
   }
 
   addPhoto(location: string, alt: string) {
-    console.log(location, alt);
+    const blobData = this.uploadPhoto(fs.readFileSync(location));
 
+    console.log(blobData, alt);
     return this;
+  }
+
+  private async uploadPhoto(buffer: Buffer) {
+    const fileType = await fileTypeFromBuffer(buffer);
+    if (fileType) {
+      try {
+        const blob = await this.agent.uploadBlob(buffer, {
+          encoding: fileType.mime,
+        });
+        return blob;
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    return null;
   }
 }

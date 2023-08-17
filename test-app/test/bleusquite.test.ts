@@ -42,4 +42,17 @@ describe("Testing Bleusquite class", function () {
 
     expect(bleusquite.agent).to.not.be.null;
   });
+
+  describe("#addPhoto()", function () {
+    it("adds a photo to the post", function () {
+      const bleusquite = new Bleusquite({
+        identifier: "identifier",
+        password: "password",
+      });
+
+      bleusquite.addPhoto("test/fixtures/cheese-puff.png", "alt text");
+
+      expect(bleusquite.photosNumber).to.equal(1);
+    });
+  });
 }); // end describe
