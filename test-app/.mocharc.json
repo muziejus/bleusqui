@@ -1,0 +1,10 @@
+{
+  "loader": "ts-node/esm",
+  "extensions": ["ts"],
+  "spec": [
+    "test/**/*.test.*"
+  ],
+  "watch-files": [
+    "../bleusquite/src"
+  ]
+}
