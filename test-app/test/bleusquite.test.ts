@@ -11,6 +11,11 @@ describe("Testing Bleusquite class", function () {
     expect(bleusquite).to.be.instanceof(Bleusquite);
   });
 
+  it("throws if initialized without a configuration", function () {
+    // @ts-ignore
+    expect(() => new Bleusquite()).to.throw();
+  });
+
   // Instance variables
   it("has an `identifier` instance variable", function () {
     const bleusquite = new Bleusquite({
@@ -27,5 +32,14 @@ describe("Testing Bleusquite class", function () {
     });
 
     expect(bleusquite.password).to.equal("password");
+  });
+
+  it("has an `agent` instance variable", function () {
+    const bleusquite = new Bleusquite({
+      identifier: "identifier",
+      password: "password",
+    });
+
+    expect(bleusquite.agent).to.not.be.null;
   });
 }); // end describe
