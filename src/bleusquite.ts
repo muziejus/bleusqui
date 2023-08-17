@@ -38,10 +38,14 @@ export class Bleusquite {
   }
 
   addPhoto(location: string, alt: string) {
-    const blobData = this.uploadPhoto(fs.readFileSync(location));
+    this.uploadPhoto(fs.readFileSync(location)).then((blob) => {
+      // if (blob) {
+      this.photosNumber += 1;
+      // }
 
-    console.log(blobData, alt);
-    return this;
+      console.log(blob, alt);
+      return this;
+    });
   }
 
   private async uploadPhoto(buffer: Buffer) {

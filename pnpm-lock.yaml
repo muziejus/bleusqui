@@ -46,6 +46,9 @@ devDependencies:
   chai:
     specifier: ^4.3.7
     version: 4.3.7
+  chai-as-promised:
+    specifier: ^7.1.1
+    version: 7.1.1(chai@4.3.7)
   concurrently:
     specifier: ^8.2.0
     version: 8.2.0
@@ -910,6 +913,15 @@ packages:
   /camelcase@6.3.0:
     resolution: {integrity: sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==}
     engines: {node: '>=10'}
+    dev: true
+
+  /chai-as-promised@7.1.1(chai@4.3.7):
+    resolution: {integrity: sha512-azL6xMoi+uxu6z4rhWQ1jbdUhOMhis2PvscD/xjLqNMkv3BPPp2JyyuTHOrf9BOosGpNQ11v6BKv/g57RXbiaA==}
+    peerDependencies:
+      chai: '>= 2.1.2 < 5'
+    dependencies:
+      chai: 4.3.7
+      check-error: 1.0.2
     dev: true
 
   /chai@4.3.7:
