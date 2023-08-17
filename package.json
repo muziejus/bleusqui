@@ -8,7 +8,7 @@
   "type": "module",
   "repository": "git@github.com:muziejus/bleusquite.git",
   "scripts": {
-    "dev": "rollup -c ./rollup.config.mjs --watch",
+    "dev": "rollup -c ./rollup.config.mjs --watch --watch.onEnd='mocha'",
     "build": "rollup -c ./rollup.config.mjs",
     "devOld": "concurrently \"npm:dev:*\" \"npm:test:*\" --prefix-colors cyan,white,yellow --restart-tries -1",
     "lint:types": "tsc --noEmit",
