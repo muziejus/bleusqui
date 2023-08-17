@@ -5,7 +5,7 @@ export interface BleusquiteConfiguration {
   password: string;
 }
 
-export default class Bleusquite {
+export class Bleusquite {
   declare agent: BskyAgent;
 
   declare postRecord: PostRecord;
