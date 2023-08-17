@@ -15,9 +15,9 @@ so that people without a lot of knowledge of Node (or ATP, like myself)
 can just wire something up that posts cute phrases or a picture.
 As such, Bleusquite does _only_ three things:
 
-1. It posts skeets.
-2. It can attach a photo to a skeet.
-3. It can react to mentions.
+- [ ] It posts skeets.
+- [ ] It can attach a photo to a skeet.
+- [ ] It can react to mentions.
 
 Wiring in the content, setting the schedule via `cron`, etc.,
 are left as exercises to the user's creative mind. That said, 
@@ -31,7 +31,7 @@ pnpm i bleusquite
 
 ## Use
 
-This library exposes a class, `BskySkeet`, that has the three methods
+This library exposes a class, `Bleusquite`, that has the three methods
 mentioned above.
 
 ```ts
