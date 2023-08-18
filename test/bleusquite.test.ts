@@ -46,6 +46,8 @@ describe("Testing Bleusquite class", function () {
 
     it("that has an images array");
 
+    it("throws if the image is too large");
+
     it("throws when there is no alt text", function () {
       const bleusquite = newBleusquite();
       expect(() => {
