@@ -1,10 +1,16 @@
-import { BskyAgent, type PostRecord } from "@atproto/api";
-import { fileTypeFromBuffer } from "file-type";
+import { AppBskyEmbedImages, BlobRef, BskyAgent } from "@atproto/api";
+import type { Image } from "@atproto/api/dist/client/types/app/bsky/embed/images.js";
+import type { Record } from "@atproto/api/dist/client/types/app/bsky/feed/post.js";
+// import { fileTypeFromBuffer } from "file-type";
 import fs from "fs";
 
 export interface BleusquiteConfiguration {
   identifier: string;
   password: string;
+}
+
+export interface BleusquiteRecord extends Record {
+  embed?: AppBskyEmbedImages.Main;
 }
 
 export class Bleusquite {
@@ -14,9 +20,11 @@ export class Bleusquite {
 
   declare agent: BskyAgent;
 
-  declare postRecord: PostRecord;
-
-  photosNumber = 0;
+  postRecord: BleusquiteRecord = {
+    text: "",
+    createdAt: new Date().toISOString(),
+    $type: "app.bsky.feed.post",
+  };
 
   constructor(config: BleusquiteConfiguration) {
     this.identifier = config.identifier;
@@ -37,17 +45,46 @@ export class Bleusquite {
     console.log(text);
   }
 
-  addPhoto(location: string, alt: string) {
-    this.uploadPhoto(fs.readFileSync(location)).then((blob) => {
-      // if (blob) {
-      this.photosNumber += 1;
-      // }
+  addPhoto(file: string | Buffer, alt: string): Bleusquite {
+    if (!alt) throw new Error("Alt text is required");
 
-      console.log(blob, alt);
-      return this;
-    });
+    let buffer: Buffer;
+    if (typeof file === "string") {
+      buffer = fs.readFileSync(file);
+    } else {
+      buffer = file;
+    }
+    // this.uploadPhoto(buffer).then((blob) => {
+    //   if (blob) {
+    //
+    //     this.photosNumber += 1;
+    //
+    const image: Image = {
+      image: buffer as unknown as BlobRef,
+      // image: blob.data.blob,
+      alt,
+    };
+
+    if (!this.postRecord.embed) {
+      const images: Image[] = [];
+      this.postRecord["embed"] = {
+        images,
+        $type: "app.bsky.embed.images",
+      } as AppBskyEmbedImages.Main;
+    }
+
+    if (this.postRecord.embed.images.length < 4) {
+      this.postRecord.embed.images.push(image);
+    } else {
+      throw new Error("Too many photos");
+    }
+    //   return this;
+    // });
+
+    return this;
   }
 
+  /*
   private async uploadPhoto(buffer: Buffer) {
     const fileType = await fileTypeFromBuffer(buffer);
     if (fileType) {
@@ -63,4 +100,5 @@ export class Bleusquite {
 
     return null;
   }
+  */
 }
