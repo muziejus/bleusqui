@@ -1,4 +1,4 @@
-# Bleusquite
+# Bleusqui
 
 After Twitter destroyed the amusing community of bots that had grown up within it,
 all of my bots were suddenly stranded.
@@ -9,42 +9,43 @@ which already has a full-featured library,
 [@atproto/api](https://github.com/bluesky-social/atproto/tree/main/packages/api),
 for connecting to Bluesky (or any ATP service) with a Node application.
 
-Bleusquite aims to focus the API on bots that post content,
+Bleusqui aims to focus the API on bots that post content,
 leaving aside a lot of the API functionality,
 so that people without a lot of knowledge of Node (or ATP, like myself)
 can just wire something up that posts cute phrases or a picture.
-As such, Bleusquite does _only_ three things:
+As such, Bleusqui does _only_ three things:
 
 - [ ] It posts skeets.
-- [ ] It can attach a photo to a skeet.
-- [ ] It can react to mentions.
+- [ ] It can attach up to 4 photos to a skeet.
+- [ ] It can get a list of mentions.
 
 Wiring in the content, setting the schedule via `cron`, etc.,
 are left as exercises to the user's creative mind. That said, 
-at the bottom of this README is a list of Bluesky bots that use Bleusquite.
+at the bottom of this README is a list of Bluesky bots that use Bleusqui.
 
 ## Installation
 
 ```
-pnpm i bleusquite
+pnpm i bleusqui
 ```
 
 ## Use
 
-This library exposes a class, `Bleusquite`, that has the three methods
-mentioned above.
+This library exposes two classes, `BleusquiSquite` 
+that posts skeets (with photos), and `BleusquiMentchies`,
+which helps the user handler their mentions.
 
 ```ts
-import {Bleusquite, BleusquiteConfiguration} from "bleusquite";
+import {BleusquiSquite, BleusquiConfiguration} from "bleusqui";
 
 
-const config: BleusquiteConfiguration = {
+const config: BleusquiConfiguration = {
   identifer: "email@example.com", // Obviously don't do this. Use dotenv.
   password: "myPassw0rd" // Obviously don't do this. Use dotenv.
 };
 
-const skeet = new Bleusquite(config);
-skeet.addPhoto("capybara.jpg", "this is alt text")
+const skeet = new BleusquiSquite(config);
+skeet.addPhoto("capybara.jpg", "An adorable capybara swimming in Brazil.")
   .post("This is so much easier than Twitter, @moacir.com!");
 ```
 

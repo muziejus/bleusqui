@@ -1,12 +1,12 @@
 {
-  "name": "bleusquite",
+  "name": "bleusqui",
   "version": "0.0.1",
   "description": "A Node library (further) simplifying the process of posting to Bluesky automatically.",
   "author": "Moacir P. de Sá Pereira <github@moacir.moacir.com> (http://moacir.com)",
   "license": "MIT",
   "private": true,
   "type": "module",
-  "repository": "git@github.com:muziejus/bleusquite.git",
+  "repository": "git@github.com:muziejus/bleusqui.git",
   "scripts": {
     "dev": "rollup -c ./rollup.config.mjs --watch --watch.onEnd='mocha'",
     "build": "rollup -c ./rollup.config.mjs",

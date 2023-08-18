@@ -1,2 +1,2 @@
-export { Bleusquite } from "./bleusquite.ts";
-export type { BleusquiteConfiguration } from "./bleusquite.ts";
+export { BleusquiSquite } from "./bleusqui-squite.ts";
+export type { BleusquiConfiguration } from "./bleusqui.ts";

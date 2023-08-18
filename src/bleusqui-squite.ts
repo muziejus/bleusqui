@@ -1,51 +1,26 @@
-import { AppBskyEmbedImages, BlobRef, BskyAgent } from "@atproto/api";
+import { AppBskyEmbedImages, BlobRef } from "@atproto/api";
 import type { Image } from "@atproto/api/dist/client/types/app/bsky/embed/images.js";
 import type { Record } from "@atproto/api/dist/client/types/app/bsky/feed/post.js";
 // import { fileTypeFromBuffer } from "file-type";
 import fs from "fs";
+import { Bleusqui } from "./bleusqui.ts";
 
-export interface BleusquiteConfiguration {
-  identifier: string;
-  password: string;
-}
-
-export interface BleusquiteRecord extends Record {
+export interface BleusquiSquiteRecord extends Record {
   embed?: AppBskyEmbedImages.Main;
 }
 
-export class Bleusquite {
-  declare identifier: string;
-
-  declare password: string;
-
-  declare agent: BskyAgent;
-
-  postRecord: BleusquiteRecord = {
+export class BleusquiSquite extends Bleusqui {
+  postRecord: BleusquiSquiteRecord = {
     text: "",
     createdAt: new Date().toISOString(),
     $type: "app.bsky.feed.post",
   };
 
-  constructor(config: BleusquiteConfiguration) {
-    this.identifier = config.identifier;
-    this.password = config.password;
-    this.setAgent();
-  }
-
-  async setAgent() {
-    if (!this.identifier || !this.password)
-      throw new Error("Identifier or password not set");
-
-    const agent = new BskyAgent({ service: "https://bsky.social" });
-    await agent.login({ identifier: this.identifier, password: this.password });
-    this.agent = agent;
-  }
-
   post(text: string): void {
     console.log(text);
   }
 
-  addPhoto(file: string | Buffer, alt: string): Bleusquite {
+  addPhoto(file: string | Buffer, alt: string): BleusquiSquite {
     if (!alt) throw new Error("Alt text is required");
 
     let buffer: Buffer;
@@ -56,9 +31,6 @@ export class Bleusquite {
     }
     // this.uploadPhoto(buffer).then((blob) => {
     //   if (blob) {
-    //
-    //     this.photosNumber += 1;
-    //
     const image: Image = {
       image: buffer as unknown as BlobRef,
       // image: blob.data.blob,
