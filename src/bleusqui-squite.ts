@@ -20,7 +20,7 @@ export class BleusquiSquite extends Bleusqui {
     console.log(text);
   }
 
-  addPhoto(file: string | Buffer, alt: string): BleusquiSquite {
+  async addPhoto(file: string | Buffer, alt: string): Promise<BleusquiSquite> {
     if (!alt) throw new Error("Alt text is required");
 
     let buffer: Buffer;
@@ -28,6 +28,10 @@ export class BleusquiSquite extends Bleusqui {
       buffer = fs.readFileSync(file);
     } else {
       buffer = file;
+    }
+
+    if (buffer.length > 1000000){
+      throw new Error("Image too large.");
     }
     // this.uploadPhoto(buffer).then((blob) => {
     //   if (blob) {
@@ -50,8 +54,6 @@ export class BleusquiSquite extends Bleusqui {
     } else {
       throw new Error("Too many photos");
     }
-    //   return this;
-    // });
 
     return this;
   }
