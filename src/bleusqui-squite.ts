@@ -1,7 +1,7 @@
-import { AppBskyEmbedImages, BlobRef } from "@atproto/api";
+import { AppBskyEmbedImages} from "@atproto/api";
 import type { Image } from "@atproto/api/dist/client/types/app/bsky/embed/images.js";
 import type { Record } from "@atproto/api/dist/client/types/app/bsky/feed/post.js";
-// import { fileTypeFromBuffer } from "file-type";
+import { fileTypeFromBuffer } from "file-type";
 import fs from "fs";
 import { Bleusqui } from "./bleusqui.ts";
 
@@ -21,7 +21,8 @@ export class BleusquiSquite extends Bleusqui {
   }
 
   async addPhoto(file: string | Buffer, alt: string): Promise<BleusquiSquite> {
-    if (!alt) throw new Error("Alt text is required");
+    console.log("agent: " , this.agent)
+    if (!alt) throw new Error("Alt text is required.");
 
     let buffer: Buffer;
     if (typeof file === "string") {
@@ -33,11 +34,14 @@ export class BleusquiSquite extends Bleusqui {
     if (buffer.length > 1000000){
       throw new Error("Image too large.");
     }
-    // this.uploadPhoto(buffer).then((blob) => {
-    //   if (blob) {
+
+    const uploadedBlob = await this.uploadPhoto(buffer);
+
+    if(!uploadedBlob) throw new Error("Upload failed.");
+
     const image: Image = {
-      image: buffer as unknown as BlobRef,
-      // image: blob.data.blob,
+      // image: buffer as unknown as BlobRef,
+      image: uploadedBlob.data.blob,
       alt,
     };
 
@@ -58,7 +62,6 @@ export class BleusquiSquite extends Bleusqui {
     return this;
   }
 
-  /*
   private async uploadPhoto(buffer: Buffer) {
     const fileType = await fileTypeFromBuffer(buffer);
     if (fileType) {
@@ -74,5 +77,8 @@ export class BleusquiSquite extends Bleusqui {
 
     return null;
   }
-  */
+
+  constructor(args:any){
+    super(args);
+  }
 }

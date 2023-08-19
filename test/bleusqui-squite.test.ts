@@ -1,7 +1,15 @@
 import { BleusquiSquite } from "../dist/index.js";
+// import { Bleusqui } from "../dist/bleusqui.js";
 import { expect } from "chai";
+// import sinon from "sinon";
 
 describe("Testing BleusquiSquite class", function () {
+  // sinon.stub(Bleusqui, "agent").value({
+  //   login: sinon.stub(),
+  //
+  // })
+  // sinon.replace(Bleusqui, "agent", {});
+
   const newBleusquiSquite = () =>
     new BleusquiSquite({ identifier: "identifier", password: "password" });
 
@@ -17,6 +25,15 @@ describe("Testing BleusquiSquite class", function () {
   });
 
   describe("#addPhoto()", function () {
+
+    // sinon.stub(BleusquiSquite, <any>"agent").returns({
+    //   uploadBlob: sinon.stub().resolves({
+    //     data: {
+    //       blob: new Blob()
+    //     }
+    //   })
+    // });
+
     it("returns itself (as a promise)", async function () {
       let bleusquiSquite = newBleusquiSquite();
       bleusquiSquite = await bleusquiSquite.addPhoto("test/fixtures/cheese-puff.png", "alt text")
