@@ -6,7 +6,7 @@ export interface BleusquiConfiguration {
 }
 
 export class Bleusqui {
-  private declare agent: BskyAgent;
+  declare agent: BskyAgent;
 
   constructor(config: BleusquiConfiguration) {
     this.setAgent(config);
@@ -16,8 +16,7 @@ export class Bleusqui {
     if (!config.identifier || !config.password)
       throw new Error("Identifier or password not set");
 
-    const agent = new BskyAgent({ service: "https://bsky.social" });
-    await agent.login(config);
-    this.agent = agent;
+    this.agent = new BskyAgent({ service: "https://bsky.social" });
+    await this.agent.login(config);
   }
 }
