@@ -31,6 +31,9 @@ devDependencies:
   '@types/chai':
     specifier: ^4.3.5
     version: 4.3.5
+  '@types/chai-as-promised':
+    specifier: ^7.1.5
+    version: 7.1.5
   '@types/mocha':
     specifier: ^10.0.1
     version: 10.0.1
@@ -543,6 +546,12 @@ packages:
 
   /@tsconfig/node16@1.0.4:
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
+    dev: true
+
+  /@types/chai-as-promised@7.1.5:
+    resolution: {integrity: sha512-jStwss93SITGBwt/niYrkf2C+/1KTeZCZl1LaeezTlqppAKeoQC7jxyqYuP72sxBGKCIbw7oHgbYssIRzT5FCQ==}
+    dependencies:
+      '@types/chai': 4.3.5
     dev: true
 
   /@types/chai@4.3.5:
