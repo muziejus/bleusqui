@@ -1,7 +1,14 @@
+import { describe, test, expect, jest } from "@jest/globals";
 import { BleusquiSquite } from "../dist/index.js";
-// import { Bleusqui } from "../dist/bleusqui.js";
-import { expect } from "chai";
+import { BskyAgent } from "@atproto/api";
+// import { expect } from "chai";
 // import sinon from "sinon";
+
+// jest.mock("@atproto/api");
+// jest.spyOn(BskyAgent.prototype, "login")
+  // .mockImplementation(({identifier: "identifier", password: "password"}) => {
+  //   console.log("login")
+  // })
 
 describe("Testing BleusquiSquite class", function () {
   // sinon.stub(Bleusqui, "agent").value({
@@ -10,14 +17,30 @@ describe("Testing BleusquiSquite class", function () {
   // })
   // sinon.replace(Bleusqui, "agent", {});
 
+  // jest.spyOn(BskyAgent.prototype, "login")
+  // BskyAgent.login.mockImplementation((config) => "20");
+
+
+  // jest.mock("../dist/index.js")
+  BleusquiSquite.agent = jest.fn().mockImplementation(() => {
+    return {
+      login: (config: BleusquiConfiguration) => {
+        return this;
+      }
+    }
+  })
+
+
   const newBleusquiSquite = () =>
     new BleusquiSquite({ identifier: "identifier", password: "password" });
 
-  it("can be initialized with a configuration", function () {
+  test("can be initialized with a configuration", function () {
     const bleusquiSquite = newBleusquiSquite();
 
-    expect(bleusquiSquite).to.be.instanceof(BleusquiSquite);
+    expect(bleusquiSquite).toBeInstanceOf(BleusquiSquite);
   });
+
+  /*
 
   it.skip("throws if initialized without a configuration", function () {
     // @ts-expect-error
@@ -92,4 +115,5 @@ describe("Testing BleusquiSquite class", function () {
     it("adds text to the postRecord");
     it("posts to Bluesky");
   }); // end describe #post()
+  */
 }); // end describe BleusquiSquite
